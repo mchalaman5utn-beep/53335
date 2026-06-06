@@ -1,0 +1,6 @@
+while (1) {
+    printf("inicio") ,
+    while (1) {
+        printf("ciclo interno 123") ,
+    }
+}

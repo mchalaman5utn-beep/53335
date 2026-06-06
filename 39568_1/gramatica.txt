@@ -1,0 +1,92 @@
+=========================================================
+  CONSIGNAS DEL TRABAJO (En ANSI-C)
+=========================================================
+
+programa:
+instrucciones
+;
+instrucciones:
+instruccion
+| instrucciones instruccion
+;
+instruccion:
+bucle
+| salida
+;
+bucle:
+"while" "(" condicion ")" "{" instrucciones "}"
+;
+salida:
+"printf" "(" cadena ")" ","
+;
+condicion:
+"0"
+| "1"
+;
+cadena:
+"\"" caracteres "\""
+;
+caracteres:
+caracter
+| caracteres caracter
+;
+caracter:
+letra
+| digito
+| " "
+| simbolo
+;
+letra:
+"a" ... "z"
+|"A" ... "Z"
+;
+digito:
+"O" ... "9"
+;
+simbolo:
+"." |"," |"!" |"?" |":"|";"|" "   
+;
+
+=========================================================
+  GRAMÁTICA EN NOTACIÓN EBNF
+=========================================================
+
+<programa>      ::= { <instruccion> } EOF ;
+
+<instruccion>   ::= <bucle>
+                 |  <salida> ;
+
+<bucle>         ::= "while" "(" <condicion> ")" "{" { <instruccion> } "}" ;
+
+<condicion>     ::= "0" | "1" ;
+
+<salida>        ::= "printf" "(" <cadena> ")" "," ;
+
+<cadena>        ::= '"' { <caracter> } '"' ;
+
+<caracter>      ::= <letra>
+                 |  <digito>
+                 |  " "
+                 |  <simbolo> ;
+
+<letra>         ::= [a-zA-Z] ;
+
+<digito>        ::= [0-9] ;
+
+<simbolo>       ::= "." | "," | "!" | "?" | ":" | ";" ;
+
+=========================================================
+  DESCRIPCIÓN DE TOKENS
+=========================================================
+
+  WHILE         →  palabra reservada   'while'
+  PRINTF        →  palabra reservada   'printf'
+  CERO          →  condición           '0'
+  UNO           →  condición           '1'
+  CADENA_LIT    →  cadena de texto     '"' { <caracter> } '"'
+  LPAREN        →  agrupador           '('
+  RPAREN        →  agrupador           ')'
+  LBRACE        →  agrupador           '{'
+  RBRACE        →  agrupador           '}'
+  COMMA         →  delimitador         ','
+  EOF           →  fin de archivo
